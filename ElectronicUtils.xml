@@ -255,6 +255,16 @@ Meter
     <Constant Identifier="facToFemto" Type="Int64" Expression="k*facMilliToFemto"/>
     <Constant Identifier="facKiloToFemto" Type="Int64" Expression="k*facToFemto"/>
 
+    <Constant Identifier="facPicoToPico" Type="Int64" Expression="1"/>
+    <Constant Identifier="facNanoToPico" Type="Int64" Expression="k*facPicoToPico"/>
+    <Constant Identifier="facMicroToPico" Type="Int64" Expression="k*facNanoToPico"/>
+    <Constant Identifier="facMilliToPico" Type="Int64" Expression="k*facMicroToPico"/>
+    <Constant Identifier="facToPico" Type="Int64" Expression="k*facMilliToPico"/>
+    <Constant Identifier="facKiloToPico" Type="Int64" Expression="k*facToPico"/>
+
+    <Constant Identifier="facToMilliToMilli" Type="Int64" Expression="1"/>
+    <Constant Identifier="facToMilli" Type="Int64" Expression="k*facToMilliToMilli"/>
+
     <Constant Identifier="nano" Type="Extended" Expression="1/1000000000"/>
     <Constant Identifier="micro" Type="Extended" Expression="1/1000000"/>
     <Constant Identifier="Milli" Type="Extended" Expression="1/1000"/>
@@ -300,7 +310,7 @@ Meter
     <Constant Identifier="cFactorToAtto" Type="UInt64" Expression="cScaleFactor18"/>
 
     <Constant Identifier="facMegaToPico" Type="Int64"  Expression="cFactorFromMega * cFactorToPico"/>
-    <Constant Identifier="facMicroToPico" Type="Int64"  Expression="cFactorToPico div cFactorToMicro"/>
+    <!--<Constant Identifier="facMicroToPico" Type="Int64"  Expression="cFactorToPico div cFactorToMicro"/>-->
 
     <Constant Identifier="facFromPico" Type="Extended" Expression="1/cFactorToPico"/>
     <Constant Identifier="facFromFemto" Type="Extended" Expression="1/cFactorToFemto"/>
@@ -1920,6 +1930,15 @@ Done:
       <Block>
         <Execute Statement="Result:= True"/>
         <Execute Statement="IntValue:= Round(ExtValue * FromExtendedFactor)"/>
+      </Block>
+    </Function>
+    
+    <Function Identifier="TUnitConvertor.IntValueToExtended" Type="Extended">
+      <Parameters>
+        <Parameter Identifier="IntValue" Type="ConvInt"/>
+      </Parameters>
+      <Block>
+        <Execute Statement="Result:= IntValue * ToExtendedFactor"/>
       </Block>
     </Function>
 
